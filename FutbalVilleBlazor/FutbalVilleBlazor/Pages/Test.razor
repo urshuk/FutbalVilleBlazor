@@ -25,16 +25,17 @@ else
         <tbody>
             @foreach (var log in logs)
             {
-            <tr>
-                <td>@log.Action</td>
-                <td>@log.ExceptionType</td>
-                <td>@log.Message</td>
-                <td>@log.ObjectId</td>
-                <td>@log.Datetime</td>
-                <td>@log.Status</td>
-                <td><button class="btn btn-primary" @onclick="@(async () => await MarkAsRead(log.Id))">Read</button></td>
-                <td><button class="btn btn-success" @onclick="@(async () => await MarkAsFixed(log.Id))">Fixed</button></td>
-            </tr>
+                <tr>
+                    <td>@log.Action</td>
+                    <td>@log.ExceptionType</td>
+                    <td>@log.Message</td>
+                    <td>@log.ObjectId</td>
+                    <td>@log.Datetime</td>
+                    <td>@log.Status</td>
+                    <td><button class="btn btn-primary" @onclick="@(async () => await MarkAsRead(log.Id))">Read</button></td>
+                    <td><button class="btn btn-success" @onclick="@(async () => await MarkAsFixed(log.Id))">Fixed</button></td>
+                    <td><button class="btn btn-danger" @onclick="@(async () => await DeleteLog(log.Id))">Delete</button></td>
+                </tr>
 
             }
         </tbody>
@@ -64,6 +65,13 @@ else
         errorObj.Status = ErrorLog.LogStatus.Fixed;
 
         await Http.SendJsonAsync(HttpMethod.Put, "/api/ErrorLogs/" + logId, errorObj);
+
+        logs = await Http.GetJsonAsync<List<ErrorLog>>("api/ErrorLogs");
+    }
+
+    protected async Task DeleteLog(string logId)
+    {
+        await Http.DeleteAsync("/api/ErrorLogs/" + logId);
 
         logs = await Http.GetJsonAsync<List<ErrorLog>>("api/ErrorLogs");
     }

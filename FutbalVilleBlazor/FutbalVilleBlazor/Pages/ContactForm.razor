@@ -1,0 +1,78 @@
+﻿@page "/Contact"
+@using FutbalVilleBlazor.Data
+@using System.Net.Mail
+
+<h3>ContactForm</h3>
+
+<EditForm Model="@contactModel" OnValidSubmit="SendEmail">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+    <div class="form-group">
+        <label for="inputName">
+            Meno:
+            <InputText @bind-Value="contactModel.Name" class="form-control" type="text" id="inputName" />
+        </label>
+    </div>
+    <div class="form-group">
+        <label for="inputEmail">
+            Email:
+            <InputText @bind-Value="contactModel.Email" class="form-control" type="email" id="inputEmail" placeholder="Zadaj email" />
+        </label>
+    </div>
+    <div class="form-group">
+        <label for="inputSubject">
+            Predmet:
+            <InputText @bind-Value="contactModel.Subject" class="form-control" type="text" id="inputSubject" />
+        </label>
+    </div>
+    <div class="form-group">
+        <label for="inputPhone">
+            Mobil (Volitelne):
+            <InputText @bind-Value="contactModel.Phone" class="form-control" type="tel" id="inputPhone" placeholder="Zadaj mobil" />
+        </label>
+    </div>
+    <div class="form-group">
+        <label for="inputBody">
+            Sprava:
+            <InputTextArea @bind-Value="contactModel.Message" class="form-control" id="inputBody" placeholder="Zadaj daco" />
+        </label>
+    </div>
+    <button type="submit" class="btn btn-primary">Odoslat</button>
+
+
+</EditForm>
+
+@code {
+    private Contact contactModel = new Contact();
+
+    private async Task SendEmail()
+    {
+        try
+        {
+            var mail = new MailMessage();
+            var SmtpServer = new SmtpClient("smtp.gmail.com");
+
+            mail.From = new MailAddress("vitvasakport@gmail.com");
+            mail.To.Add("vitvasak@outlook.com");
+            mail.Subject = contactModel.Subject;
+            mail.IsBodyHtml = true;
+            mail.Body = $"Name: {contactModel.Name} <br/>" +
+                    $" Email: {contactModel.Email} <br/>" +
+                    $" Phone: {contactModel.Phone} <br/>" +
+                    $" Message: {contactModel.Message}";
+
+            SmtpServer.Port = 587;
+            SmtpServer.Host = "smtp.gmail.com";
+            SmtpServer.EnableSsl = true;
+            SmtpServer.UseDefaultCredentials = false;
+            SmtpServer.Credentials = new System.Net.NetworkCredential("vitvasakport@gmail.com", "vvport1598");
+
+            await SmtpServer.SendMailAsync(mail);
+            contactModel = new Contact();
+        }
+        catch (Exception)
+        {
+
+        }
+    }
+}
