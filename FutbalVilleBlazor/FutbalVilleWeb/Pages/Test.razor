@@ -1,6 +1,7 @@
 ﻿@page "/test"
 @using System.Net.Http
 @using FutbalVilleWeb.Data
+@attribute [Authorize(Roles = "Admin")]
 @inject HttpClient Http
 
 <h3>Test</h3>
