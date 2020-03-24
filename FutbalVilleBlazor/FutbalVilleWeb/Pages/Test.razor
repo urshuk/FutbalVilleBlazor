@@ -1,0 +1,78 @@
+﻿@page "/test"
+@using System.Net.Http
+@using FutbalVilleWeb.Data
+@inject HttpClient Http
+
+<h3>Test</h3>
+
+@if (logs == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Action</th>
+                <th>Exception Type</th>
+                <th>Message</th>
+                <th>Object Id</th>
+                <th>DateTime</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var log in logs)
+            {
+                <tr>
+                    <td>@log.Action</td>
+                    <td>@log.ExceptionType</td>
+                    <td>@log.Message</td>
+                    <td>@log.ObjectId</td>
+                    <td>@log.Datetime</td>
+                    <td>@log.Status</td>
+                    <td><button class="btn btn-primary" @onclick="@(async () => await MarkAsRead(log.Id))">Read</button></td>
+                    <td><button class="btn btn-success" @onclick="@(async () => await MarkAsFixed(log.Id))">Fixed</button></td>
+                    <td><button class="btn btn-danger" @onclick="@(async () => await DeleteLog(log.Id))">Delete</button></td>
+                </tr>
+
+            }
+        </tbody>
+    </table>
+}
+
+@code {
+    private List<ErrorLog> logs;
+
+    protected override async Task OnInitializedAsync() => logs = await Http.GetJsonAsync<List<ErrorLog>>("api/ErrorLogs");
+
+    protected async Task MarkAsRead(string logId)
+    {
+
+        var errorObj = await Http.GetJsonAsync<ErrorLog>("/api/ErrorLogs/" + logId);
+        errorObj.Status = ErrorLog.LogStatus.Read;
+
+        await Http.SendJsonAsync(HttpMethod.Put, "/api/ErrorLogs/" + logId, errorObj);
+
+        logs = await Http.GetJsonAsync<List<ErrorLog>>("api/ErrorLogs");
+    }
+
+    protected async Task MarkAsFixed(string logId)
+    {
+
+        var errorObj = await Http.GetJsonAsync<ErrorLog>("/api/ErrorLogs/" + logId);
+        errorObj.Status = ErrorLog.LogStatus.Fixed;
+
+        await Http.SendJsonAsync(HttpMethod.Put, "/api/ErrorLogs/" + logId, errorObj);
+
+        logs = await Http.GetJsonAsync<List<ErrorLog>>("api/ErrorLogs");
+    }
+
+    protected async Task DeleteLog(string logId)
+    {
+        await Http.DeleteAsync("/api/ErrorLogs/" + logId);
+
+        logs = await Http.GetJsonAsync<List<ErrorLog>>("api/ErrorLogs");
+    }
+}

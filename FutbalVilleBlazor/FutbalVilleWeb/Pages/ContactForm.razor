@@ -1,0 +1,72 @@
+﻿@page "/Contact"
+@using FutbalVilleWeb.Data
+@using System.Net.Mail
+@using SendGrid
+@using SendGrid.Helpers.Mail
+
+<h3>ContactForm</h3>
+
+<EditForm Model="@contactModel" OnValidSubmit="SendEmail">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+    <div class="form-group">
+        <label for="inputName">
+            Meno:
+            <InputText @bind-Value="contactModel.Name" class="form-control" type="text" id="inputName" />
+        </label>
+    </div>
+    <div class="form-group">
+        <label for="inputEmail">
+            Email:
+            <InputText @bind-Value="contactModel.Email" class="form-control" type="email" id="inputEmail" placeholder="Zadaj email" />
+        </label>
+    </div>
+    <div class="form-group">
+        <label for="inputSubject">
+            Predmet:
+            <InputText @bind-Value="contactModel.Subject" class="form-control" type="text" id="inputSubject" />
+        </label>
+    </div>
+    <div class="form-group">
+        <label for="inputPhone">
+            Mobil (Volitelne):
+            <InputText @bind-Value="contactModel.Phone" class="form-control" type="tel" id="inputPhone" placeholder="Zadaj mobil" />
+        </label>
+    </div>
+    <div class="form-group">
+        <label for="inputBody">
+            Sprava:
+            <InputTextArea @bind-Value="contactModel.Message" class="form-control" id="inputBody" placeholder="Zadaj daco" />
+        </label>
+    </div>
+    <button type="submit" class="btn btn-primary">Odoslat</button>
+
+
+</EditForm>
+
+@code {
+    private Contact contactModel = new Contact();
+
+    private async Task SendEmail()
+    {
+        try
+        {
+            var client = new SendGridClient("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");
+            var from = new EmailAddress("vitvasakport@gmail.com", "FutbalVille");
+            var to = new EmailAddress("vitvasak@outlook.com", "Vit Vasak");
+            var subject = contactModel.Subject;
+            var body = $"Name: {contactModel.Name} <br/>" +
+                    $" Email: {contactModel.Email} <br/>" +
+                    $" Phone: {contactModel.Phone} <br/>" +
+                    $" Message: {contactModel.Message}";
+            var msg = MailHelper.CreateSingleEmail(from, to, subject, "", body);
+            await client.SendEmailAsync(msg);
+
+            contactModel = new Contact();
+        }
+        catch (Exception)
+        {
+
+        }
+    }
+}
