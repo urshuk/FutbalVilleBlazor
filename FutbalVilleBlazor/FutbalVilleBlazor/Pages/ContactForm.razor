@@ -1,6 +1,8 @@
 ﻿@page "/Contact"
 @using FutbalVilleBlazor.Data
 @using System.Net.Mail
+@using SendGrid
+@using SendGrid.Helpers.Mail
 
 <h3>ContactForm</h3>
 
@@ -49,25 +51,17 @@
     {
         try
         {
-            var mail = new MailMessage();
-            var SmtpServer = new SmtpClient("smtp.gmail.com");
-
-            mail.From = new MailAddress("vitvasakport@gmail.com");
-            mail.To.Add("vitvasak@outlook.com");
-            mail.Subject = contactModel.Subject;
-            mail.IsBodyHtml = true;
-            mail.Body = $"Name: {contactModel.Name} <br/>" +
+            var client = new SendGridClient("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");
+            var from = new EmailAddress("vitvasakport@gmail.com", "FutbalVille");
+            var to = new EmailAddress("vitvasak@outlook.com", "Vit Vasak");
+            var subject = contactModel.Subject;
+            var body = $"Name: {contactModel.Name} <br/>" +
                     $" Email: {contactModel.Email} <br/>" +
                     $" Phone: {contactModel.Phone} <br/>" +
                     $" Message: {contactModel.Message}";
+            var msg = MailHelper.CreateSingleEmail(from, to, subject, "", body);
+            await client.SendEmailAsync(msg);
 
-            SmtpServer.Port = 587;
-            SmtpServer.Host = "smtp.gmail.com";
-            SmtpServer.EnableSsl = true;
-            SmtpServer.UseDefaultCredentials = false;
-            SmtpServer.Credentials = new System.Net.NetworkCredential("vitvasakport@gmail.com", "vvport1598");
-
-            await SmtpServer.SendMailAsync(mail);
             contactModel = new Contact();
         }
         catch (Exception)
