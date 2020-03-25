@@ -15,7 +15,7 @@ namespace FutbalVilleWeb.Data
             var client = new MongoClient(settings.ConnectionString);
             var database = client.GetDatabase(settings.DatabaseName);
 
-            errorLogs = database.GetCollection<ErrorLog>(settings.ErrorsCollectionName);
+            errorLogs = database.GetCollection<ErrorLog>(settings.CollectionName);
         }
 
         public List<ErrorLog> Get() => errorLogs.Find(error => true).ToList();

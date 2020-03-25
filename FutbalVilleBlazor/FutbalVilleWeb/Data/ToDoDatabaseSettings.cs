@@ -5,14 +5,14 @@ using System.Threading.Tasks;
 
 namespace FutbalVilleWeb.Data
 {
-	public class LoggingDatabaseSettings : ILoggingDatabaseSettings
+	public class ToDoDatabaseSettings : IToDoDatabaseSettings
 	{
 		public string CollectionName { get; set; }
 		public string ConnectionString { get; set; }
 		public string DatabaseName { get; set; }
 	}
 
-	public interface ILoggingDatabaseSettings
+	public interface IToDoDatabaseSettings
 	{
 		string CollectionName { get; set; }
 		string ConnectionString { get; set; }

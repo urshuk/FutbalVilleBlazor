@@ -37,6 +37,8 @@ namespace FutbalVilleWeb
 			//mongoDB
 			services.Configure<LoggingDatabaseSettings>(Configuration.GetSection(nameof(LoggingDatabaseSettings)));
 			services.AddSingleton<ILoggingDatabaseSettings>(sp => sp.GetRequiredService<IOptions<LoggingDatabaseSettings>>().Value);
+			services.Configure<ToDoDatabaseSettings>(Configuration.GetSection(nameof(ToDoDatabaseSettings)));
+			services.AddSingleton<IToDoDatabaseSettings>(sp => sp.GetRequiredService<IOptions<ToDoDatabaseSettings>>().Value);
 
 			services.AddResponseCompression(opts =>
 			{
@@ -73,6 +75,7 @@ namespace FutbalVilleWeb
 			services.AddScoped<AuthenticationStateProvider, RevalidatingIdentityAuthenticationStateProvider<IdentityUser>>();
 			services.AddSingleton<WeatherForecastService>();
 			services.AddSingleton<ErrorLogService>();
+			services.AddSingleton<ToDoService>();
 		}
 
 		// This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
