@@ -1,16 +1,40 @@
 ﻿@inherits LayoutComponentBase
+@inject NavigationManager NavigationManager
 
-<div class="sidebar">
-    <NavMenu />
+
+<div>
+    <CascadingValue Value="@greenBg">
+        <NavMenu />
+    </CascadingValue>
 </div>
 
-<div class="main">
-    <div class="top-row px-4 auth">
-        <LoginDisplay />
-        <a href="https://docs.microsoft.com/aspnet/" target="_blank">About</a>
-    </div>
-
-    <div class="content px-4">
+<main class="main @BgCssClass">
+    <div class="content">
         @Body
     </div>
+</main>
+
+<div>
+    <CascadingValue Value="@greenBg">
+        <Footer />
+    </CascadingValue>
 </div>
+
+@code {
+    private bool greenBg = true;
+    private string BgCssClass => greenBg ? "bg-green-image" : "bg-white-image";
+
+    protected override void OnInitialized()
+    {
+        // Subscribe to the event
+        NavigationManager.LocationChanged += LocationChanged;
+        greenBg = NavigationManager.BaseUri == NavigationManager.Uri;
+        base.OnInitialized();
+    }
+
+    void LocationChanged(object sender, LocationChangedEventArgs e)
+    {
+        greenBg = NavigationManager.BaseUri == NavigationManager.Uri;
+        this.StateHasChanged();
+    }
+}

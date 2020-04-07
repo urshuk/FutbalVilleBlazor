@@ -1,0 +1,16 @@
+﻿<footer class="bg-transparent">
+    <div class="row">
+        <div class="col-5 pr-0">
+            <a class="extra-link align-top @textColorCssClass font-size-14" href="/privacy">Ochrana súkromia</a>
+        </div>
+        <div class="col-7 pl-0">
+            <p class="text-right m-0 align-top @textColorCssClass font-size-14">&copy 2020 Copyright FutbalVille</p>
+        </div>
+    </div>
+</footer>
+
+@code {
+    [CascadingParameter]
+    private bool greenBg { get; set; }
+    private string textColorCssClass => greenBg ? "text-white" : "text-green";
+}

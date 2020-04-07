@@ -1,49 +1,41 @@
-﻿<div class="top-row pl-4 navbar navbar-dark">
-    <a class="navbar-brand" href="">FutbalVilleWeb</a>
-    <button class="navbar-toggler" @onclick="ToggleNavMenu">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-</div>
+﻿<nav class="navbar @NavColorCssClass bg-transparent">
+    <a class="navbar-brand" href="">
+        <img class="brand-img-height" src="@LogoPath" alt="Logo" />
+    </a>
+    <div class="@NavMenuCssClass">
+        <ul class="nav navbar-nav flex-row">
+            <li class="nav-item px-3">
+                <NavLink class="nav-link" href="counter">STIAHNUT</NavLink>
+            </li>
+            <li class="nav-item px-3">
+                <NavLink class="nav-link" href="fetchdata">O APLIKACII</NavLink>
+            </li>
+            <li class="nav-item px-3">
+                <NavLink class="nav-link" href="counter">CASTE OTAZKY</NavLink>
+            </li>
+            <li class="nav-item px-3">
+                <NavLink class="nav-link" href="contact">KONTAKT</NavLink>
+            </li>
+            <AuthorizeView Roles="idk">
+                <li class="nav-item px-3">
+                    <NavLink class="nav-link" href="test">Test</NavLink>
+                </li>
+                <li class="nav-item px-3">
+                    <NavLink class="nav-link" href="todo">TO-DO</NavLink>
+                </li>
+            </AuthorizeView>
+        </ul>
+    </div>
+</nav>
 
-<div class="@NavMenuCssClass" @onclick="ToggleNavMenu">
-    <ul class="nav flex-column">
-        <li class="nav-item px-3">
-            <NavLink class="nav-link" href="" Match="NavLinkMatch.All">
-                <span class="oi oi-home" aria-hidden="true"></span> Home
-            </NavLink>
-        </li>
-        <li class="nav-item px-3">
-            <NavLink class="nav-link" href="counter">
-                <span class="oi oi-plus" aria-hidden="true"></span> Counter
-            </NavLink>
-        </li>
-        <li class="nav-item px-3">
-            <NavLink class="nav-link" href="fetchdata">
-                <span class="oi oi-list-rich" aria-hidden="true"></span> Fetch data
-            </NavLink>
-        </li>
-        <li class="nav-item px-3">
-            <NavLink class="nav-link" href="contact">
-                <span class="oi oi-plus" aria-hidden="true"></span> Contact
-            </NavLink>
-        </li>
-        <AuthorizeView Roles="Admin">
-            <li class="nav-item px-3">
-                <NavLink class="nav-link" href="test">
-                    <span class="oi oi-list-rich" aria-hidden="true"></span> Test
-                </NavLink>
-            </li>
-            <li class="nav-item px-3">
-                <NavLink class="nav-link" href="todo">
-                    <span class="oi oi-list-rich" aria-hidden="true"></span> TO-DO
-                </NavLink>
-            </li>
-        </AuthorizeView>
-    </ul>
-</div>
 
 @code {
-    private bool collapseNavMenu = true;
+    [CascadingParameter]
+    private bool greenNav { get; set; }
+    private string NavColorCssClass => greenNav ? "navbar-green" : "navbar-white";
+    private string LogoPath => greenNav ? "/img/FV-logo-white.svg" : "/img/FV-logo-green.svg";
+
+    private bool collapseNavMenu = false;
 
     private string NavMenuCssClass => collapseNavMenu ? "collapse" : null;
 

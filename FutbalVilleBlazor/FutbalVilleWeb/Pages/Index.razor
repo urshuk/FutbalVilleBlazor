@@ -1,11 +1,44 @@
 ﻿@page "/"
 
-<h1>Hello, world!</h1>
-
-Welcome to your new app.
-
-<div class="jumbotron bg-warning">
-    <h1 class="display-4">Currently in Development...</h1>
+<div class="container-fluid align-self-center">
+    <div class="row">
+        <div class="col-12 offset-md-1 offset-lg-2 col-md-6 col-lg-6 mb-50 order-md-last d-flex flex-column">
+            <div class="row f-1">
+                <div class="col px-0">
+                    <h1 class="text-white font-weight-600 text-center text-md-left">FutbalVille</h1>
+                </div>
+            </div>
+            <div class="row f-1">
+                <div class="col px-0">
+                    <p class="font-size-20 text-white font-weight-500 text-center text-md-left">Prvá mobilná aplikácia s výsledkami všetkých futbalových líg na Slovensku</p>
+                </div>
+            </div>
+            <div class="row f-1">
+                <div class="col-4 px-0">
+                    <p class="font-size-16 text-white line-height-list font-weight-500">✓ Výsledky<br />✓ Štatistiky<br /> ✓ Tabuľky</p>
+                </div>
+                <div class="col-8 px-0 d-flex justify-content-end justify-content-md-start">
+                    <p class="font-size-16 text-white line-height-list font-weight-500">✓ Informácie o zápase<br /> ✓ Informácie o hráčoch<br /> ✓ Upozornenie o zápase</p>
+                </div>
+            </div>
+            <div class="row f-1">
+                <div class="col text-center text-md-left px-0 d-none d-md-block">
+                    <a href="/about" class="btn-white">Zistiť viac</a>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col px-0 d-flex align-self-end justify-content-between justify-content-md-start">
+                    <a href="https://apps.apple.com/us/app/futbalville/id1502079522?ls=1" target="_blank"><img class="store-img-width mr-md-4" src="/img/appstore-icon.png" /></a>
+                    <a href="https://play.google.com/store/apps/details?id=com.vitvasak.FutbalVille" target="_blank"><img class="store-img-width" src="/img/playstore-icon.png" /></a>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-md-5 col-lg-4 mb-50 px-0 order-md-first">
+            <img class="index-img mx-auto mx-md-0 d-block" src="/img/zapas.png" />
+        </div>
+        <div class="col-12 text-center text-md-left d-md-none">
+            <a href="/about" class="btn-white">Zistiť viac</a>
+        </div>
+    </div>
 </div>
 
-<SurveyPrompt Title="How is Blazor working for you?" />
