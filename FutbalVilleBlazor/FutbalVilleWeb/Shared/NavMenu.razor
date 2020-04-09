@@ -2,25 +2,28 @@
     <a class="navbar-brand" href="">
         <img class="brand-img-height" src="@LogoPath" alt="Logo" />
     </a>
-    <div class="@NavMenuCssClass">
-        <ul class="nav navbar-nav flex-row">
-            <li class="nav-item px-3">
-                <NavLink class="nav-link" href="counter">STIAHNUT</NavLink>
+    <button class="navbar-toggler @TogglerColorCssClass" type="button" @onclick="ToggleNavMenu">
+        <img class="toggler-icon @TogglerRotateCssClass" src="@TogglerPath" />
+    </button>
+    <div class="@NavMenuCssClass nav-collapse w-xs-100" @onclick="ToggleNavMenu">
+        <ul class="nav navbar-nav flex-row pb-4 py-md-0 @NavMobileColorCssClass nav-shadow">
+            <li class="nav-item px-3 py-3 w-xs-50 text-center">
+                <NavLink class="nav-link" href="download">STIAHNUŤ</NavLink>
             </li>
-            <li class="nav-item px-3">
-                <NavLink class="nav-link" href="fetchdata">O APLIKACII</NavLink>
+            <li class="nav-item px-3 py-3 w-xs-50 text-center">
+                <NavLink class="nav-link" href="about">O APLIKÁCII</NavLink>
             </li>
-            <li class="nav-item px-3">
-                <NavLink class="nav-link" href="counter">CASTE OTAZKY</NavLink>
+            <li class="nav-item px-3 py-3 w-xs-50 text-center">
+                <NavLink class="nav-link" href="faq">ČASTÉ OTÁZKY</NavLink>
             </li>
-            <li class="nav-item px-3">
+            <li class="nav-item px-3 py-3 w-xs-50 text-center">
                 <NavLink class="nav-link" href="contact">KONTAKT</NavLink>
             </li>
-            <AuthorizeView Roles="idk">
-                <li class="nav-item px-3">
-                    <NavLink class="nav-link" href="test">Test</NavLink>
+            <AuthorizeView Roles="Adminnn">
+                <li class="nav-item px-3 py-3 w-xs-50 text-center">
+                    <NavLink class="nav-link" href="test">BUGS</NavLink>
                 </li>
-                <li class="nav-item px-3">
+                <li class="nav-item px-3 py-3 w-xs-50 text-center">
                     <NavLink class="nav-link" href="todo">TO-DO</NavLink>
                 </li>
             </AuthorizeView>
@@ -33,11 +36,15 @@
     [CascadingParameter]
     private bool greenNav { get; set; }
     private string NavColorCssClass => greenNav ? "navbar-green" : "navbar-white";
+    private string NavMobileColorCssClass => greenNav ? "bg-nav-green" : "bg-nav-white";
     private string LogoPath => greenNav ? "/img/FV-logo-white.svg" : "/img/FV-logo-green.svg";
+    private string TogglerPath => greenNav ? "/img/toggler-icon-white.svg" : "/img/toggler-icon-green.svg";
+    private string TogglerRotateCssClass => collapseNavMenu ? null : "toggler-rotate";
+    private string TogglerColorCssClass => greenNav ? null : "navbar-toggler-green";
 
-    private bool collapseNavMenu = false;
+    private bool collapseNavMenu = true;
 
-    private string NavMenuCssClass => collapseNavMenu ? "collapse" : null;
+    private string NavMenuCssClass => collapseNavMenu ? "nav-collapsed" : null;
 
     private void ToggleNavMenu()
     {

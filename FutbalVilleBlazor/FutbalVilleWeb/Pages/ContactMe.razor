@@ -1,0 +1,70 @@
+﻿@page "/Contact"
+@using FutbalVilleWeb.Data
+@using System.Net.Mail
+@using SendGrid
+@using SendGrid.Helpers.Mail
+
+<div class="d-flex h-100">
+    <div class="container position-relative align-self-md-center contact-container mb-2">
+        <div class="row position-absolute contact-back-box">
+            <div class="bg-green-gradient py-20 px-15 px-md-25 py-md-40 d-md-flex flex-md-column justify-content-md-between col">
+                <div class="contact-back-paragraph">
+                    <h2 class="font-size-14 font-size-md-16 font-size-lg-20 text-white font-weight-500">Máš otázky?</h2>
+                    <p class="font-size-12 font-size-md-14 font-size-lg-18 text-white">V prípade akýchkoľvek otázok ma neváhaj kontaktovať</p>
+                </div>
+                <div class="contact-back-paragraph">
+                    <h2 class="font-size-14 font-size-md-16 font-size-lg-20 text-white font-weight-500">Hľadáš developera?</h2>
+                    <p class="font-size-12 font-size-md-14 font-size-lg-18 text-white">Som otvorený novým a zaujímavým pracovným príležitostiam.</p>
+                </div>
+            </div>
+        </div>
+        <div class="row position-absolute contact-form-container">
+            <div class="col py-3 px-md-4 max-w-700 mx-auto">
+                <h1 class="font-size-18 mb-4 text-uppercase font-weight-600">Napíš mi</h1>
+                <EditForm Model="@contactModel" class="text-right" OnValidSubmit="SendEmail">
+                    <DataAnnotationsValidator />
+                    <div class="form-group">
+                        <InputText @bind-Value="contactModel.Name" class="form-control contact-form-control" type="text" placeholder="Meno" />
+                    </div>
+                    <div class="form-group">
+                        <InputText @bind-Value="contactModel.Email" class="form-control contact-form-control" type="email" placeholder="Email" />
+                    </div>
+                    <div class="form-group">
+                        <InputText @bind-Value="contactModel.Subject" class="form-control contact-form-control" type="text" placeholder="Predmet" />
+                    </div>
+                    <div class="form-group">
+                        <InputTextArea @bind-Value="contactModel.Message" rows="10" class="form-control contact-form-control" placeholder="Správa" />
+                    </div>
+                    <button type="submit" class="btn-green">Odoslať</button>
+                </EditForm>
+            </div>
+        </div>
+    </div>
+</div>
+
+@code {
+    private Contact contactModel = new Contact();
+
+    private async Task SendEmail()
+    {
+        try
+        {
+            var client = new SendGridClient("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");
+            var from = new EmailAddress("vitvasakport@gmail.com", "FutbalVille");
+            var to = new EmailAddress("vitvasak@outlook.com", "Vit Vasak");
+            var subject = contactModel.Subject;
+            var body = $"Name: {contactModel.Name} <br/>" +
+                    $" Email: {contactModel.Email} <br/>" +
+                    $" Phone: {contactModel.Phone} <br/>" +
+                    $" Message: {contactModel.Message}";
+            var msg = MailHelper.CreateSingleEmail(from, to, subject, "", body);
+            await client.SendEmailAsync(msg);
+
+            contactModel = new Contact();
+        }
+        catch (Exception)
+        {
+
+        }
+    }
+}
