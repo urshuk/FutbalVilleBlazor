@@ -17,6 +17,7 @@
     --font-size-20: 1.25rem;
     --font-size-30: 1.875rem;
     --font-size-55: 3.4375rem;
+    --max-width: 1280px;
 }
 
 html, body {
@@ -38,6 +39,7 @@ footer {
     left: 0;
     right: 0;
     padding: var(--main-padding);
+    max-width: var(--max-width);
 }
 
 .main {
@@ -58,6 +60,12 @@ footer {
     background-color: white;
 }
 
+.bg-waves-top {
+    background: url(../img/bg-waves.png);
+    background-repeat: no-repeat;
+    background-size: 100% 13%;
+}
+
 .bg-green-gradient {
     background: linear-gradient(180deg, #65B17F 0%, #2C914F 100%) 0% 0% no-repeat padding-box;
 }
@@ -65,15 +73,22 @@ footer {
 .navbar {
     padding: var(--main-padding);
     position: absolute;
-    top: 10px;
+    padding-top: 10px;
     right: 0;
     left: 0;
     z-index: 1030;
+    height: 60px;
+    max-width: var(--max-width);
+    transition: background-color 0.85s ease-in-out;
 }
 
 .navbar-green .nav-link {
     color: white !important;
 }
+
+    .navbar-green .nav-link:hover {
+        border-bottom: solid 1px white;
+    }
 
     .navbar-green .nav-link.active {
         border-top: solid 1px white;
@@ -83,7 +98,6 @@ footer {
 
 .navbar-white .nav-link {
     color: var(--green-color) !important;
-    padding: 5px;
     display: unset;
 }
 
@@ -93,10 +107,16 @@ footer {
         color: var(--green-color) !important;
     }
 
+    .navbar-white .nav-link:hover {
+        border-bottom: solid 1px var(--green-color);
+    }
+
 .nav-link {
     color: var(--green-color) !important;
-    padding: 0;
+    padding: 5px !important;
     font-size: var(--font-size-14);
+    border-bottom: solid 1px transparent;
+    transition: border-bottom 0.35s ease-out;
 }
 
     .nav-link.active {
@@ -112,6 +132,7 @@ footer {
 
 .content {
     width: 100%;
+    max-width: var(--max-width);
     padding: var(--main-padding);
     padding-bottom: 40px;
 }
@@ -214,6 +235,36 @@ a {
         border: 1px solid var(--green-color);
         box-shadow: 0 0 0 2px var(--green-shadow-color);
     }
+
+.download-container {
+    background-color: white;
+    box-shadow: 0px 3px 6px #00000029;
+    border-radius: 10px;
+    max-width: 300px;
+    padding-left: 15px;
+    padding-right: 15px;
+    margin-top: 10px;
+    margin-bottom: 30px;
+}
+
+.download-os-logo {
+    height: 37px;
+}
+
+.download-store-logo {
+    width: 100px;
+    margin-bottom: 15px;
+}
+
+.download-qr {
+    width: 100px;
+}
+
+.download-phone-img {
+    width: 430px;
+    position: relative;
+    right: 50px;
+}
 
 
 .text-green {
@@ -375,15 +426,10 @@ a {
         top: 0.5rem;
     }
 
-@media (max-width: 350px) {
-    .store-img-width {
-        width: 115px;
-    }
-}
-
 @media (max-width: 767px) {
     .navbar {
-        padding: 0;
+        padding-left: 0;
+        padding-right: 0;
     }
 
         .navbar .navbar-brand {
@@ -453,14 +499,44 @@ a {
     }
 }
 
+@media (max-width: 350px) {
+    :root {
+        --main-padding: 0 15px;
+    }
+
+    .navbar .navbar-brand {
+        margin-left: 15px;
+    }
+
+    .navbar .navbar-toggler {
+        margin-right: 15px;
+    }
+
+    .font-size-xxs-14 {
+        font-size: var(--font-size-14);
+    }
+
+    .store-img-width {
+        width: 115px;
+    }
+}
+
 @media (min-width: 768px) {
     :root {
         --main-padding: 0 70px;
     }
 
+    .bg-waves-top {
+        background-size: 100% 35%;
+    }
+
+    .bg-md-transparent {
+        background-color: transparent !important;
+    }
+
     .navbar {
-        top: 0;
         height: 75px;
+        padding-top: 0;
     }
 
         .navbar .collapse {
@@ -624,29 +700,5 @@ a {
     .index-row-width {
         min-width: 260px;
         max-width: unset;
-    }
-}
-
-@media(min-width: 1200px) {
-    :root {
-        --main-padding: 0 240px;
-    }
-}
-
-@media(min-width: 1700px) {
-    :root {
-        --main-padding: 0 350px;
-    }
-}
-
-@media(min-width: 2100px) {
-    :root {
-        --main-padding: 0 500px;
-    }
-}
-
-@media(min-width: 2560px) {
-    :root {
-        --main-padding: 0 750px;
     }
 }

@@ -1,4 +1,4 @@
-﻿<nav class="navbar @NavColorCssClass bg-transparent">
+﻿<nav class="navbar @NavColorCssClass @NavMobileBgCssClass bg-md-transparent mx-auto">
     <a class="navbar-brand" href="">
         <img class="brand-img-height" src="@LogoPath" alt="Logo" />
     </a>
@@ -36,6 +36,7 @@
     [CascadingParameter]
     private bool greenNav { get; set; }
     private string NavColorCssClass => greenNav ? "navbar-green" : "navbar-white";
+    private string NavMobileBgCssClass => !collapseNavMenu && !greenNav ? "bg-white" : "bg-transparent";
     private string NavMobileColorCssClass => greenNav ? "bg-nav-green" : "bg-nav-white";
     private string LogoPath => greenNav ? "/img/FV-logo-white.svg" : "/img/FV-logo-green.svg";
     private string TogglerPath => greenNav ? "/img/toggler-icon-white.svg" : "/img/toggler-icon-green.svg";
