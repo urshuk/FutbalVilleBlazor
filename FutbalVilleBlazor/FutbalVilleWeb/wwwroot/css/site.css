@@ -20,26 +20,22 @@
     --max-width: 1280px;
 }
 
+/*=======================================================GENERAL===============================================================*/
 html, body {
     font-family: 'Montserrat', sans-serif;
     font-size: 100%;
+    -ms-overflow-style: none;
 }
 
+    body::-webkit-scrollbar {
+        display: none;
+    }
 
 app {
     min-height: 100vh;
     position: relative;
     display: flex;
     flex-direction: column;
-}
-
-footer {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    padding: var(--main-padding);
-    max-width: var(--max-width);
 }
 
 .main {
@@ -49,15 +45,29 @@ footer {
     padding-top: 75px;
 }
 
+.content {
+    width: 100%;
+    max-width: var(--max-width);
+    padding: var(--main-padding);
+    padding-bottom: 40px;
+}
+
+/*=======================================================FOOTER=================================================================*/
+footer {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: var(--main-padding);
+    max-width: var(--max-width);
+}
+
+/*====================================================BACKGROUNDS=================================================================*/
 .bg-green-image {
     background: url(../img/FV-index-bg.png);
     background-color: var(--green-bg-color);
     background-size: cover;
     background-position: 80%;
-}
-
-.bg-white-image {
-    background-color: white;
 }
 
 .bg-waves-top {
@@ -70,6 +80,7 @@ footer {
     background: linear-gradient(180deg, #65B17F 0%, #2C914F 100%) 0% 0% no-repeat padding-box;
 }
 
+/*======================================================NAVBAR====================================================================*/
 .navbar {
     padding: var(--main-padding);
     position: absolute;
@@ -81,6 +92,20 @@ footer {
     max-width: var(--max-width);
     transition: background-color 0.85s ease-in-out;
 }
+
+.nav-link {
+    color: var(--green-color) !important;
+    padding: 5px !important;
+    font-size: var(--font-size-14);
+    border-bottom: solid 1px transparent;
+    transition: border-bottom 0.35s ease-out;
+}
+
+    .nav-link.active {
+        border-top: solid 1px var(--green-color);
+        border-bottom: solid 1px var(--green-color);
+        color: var(--green-color) !important;
+    }
 
 .navbar-green .nav-link {
     color: white !important;
@@ -111,32 +136,39 @@ footer {
         border-bottom: solid 1px var(--green-color);
     }
 
-.nav-link {
-    color: var(--green-color) !important;
-    padding: 5px !important;
-    font-size: var(--font-size-14);
-    border-bottom: solid 1px transparent;
-    transition: border-bottom 0.35s ease-out;
+.brand-img-height {
+    height: 37px;
 }
 
-    .nav-link.active {
-        border-top: solid 1px var(--green-color);
-        border-bottom: solid 1px var(--green-color);
-        color: var(--green-color) !important;
+.navbar-toggler {
+    background-color: transparent;
+    min-width: unset;
+    border-radius: 0;
+    padding: 0;
+}
+
+    .navbar-toggler:focus {
+        outline: none;
+        box-shadow: 0 0 0 2px var(--white-shadow-color);
     }
 
-.extra-link {
-    text-decoration: underline;
-    font-size: var(--font-size-14);
+.navbar-toggler-green:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px var(--green-shadow-color);
 }
 
-.content {
-    width: 100%;
-    max-width: var(--max-width);
-    padding: var(--main-padding);
-    padding-bottom: 40px;
+.toggler-icon {
+    width: 30px;
+    height: 30px;
+    transition: transform 0.35s ease-out;
 }
 
+.toggler-rotate {
+    transform: rotate(45deg);
+    transition: transform 0.35s ease-out;
+}
+
+/*====================================================BUTTONS,LINKS================================================*/
 button, a.btn-green, a.btn-white {
     display: inline-block;
     border-radius: 11px;
@@ -204,6 +236,16 @@ a {
     transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
 }
 
+.extra-link {
+    text-decoration: underline;
+    font-size: var(--font-size-14);
+}
+
+    .extra-link:hover {
+        color: lightgreen !important;
+    }
+
+/*================================================CONTACT PAGE========================================================*/
 .contact-container {
     height: 760px;
 }
@@ -236,6 +278,7 @@ a {
         box-shadow: 0 0 0 2px var(--green-shadow-color);
     }
 
+/*===============================================DONWLOAD PAGE========================================================*/
 .download-container {
     background-color: white;
     box-shadow: 0px 3px 6px #00000029;
@@ -266,9 +309,9 @@ a {
     right: 50px;
 }
 
-
+/*==================================================UTILITY============================================================*/
 .text-green {
-    color: var(--green-color);
+    color: var(--green-color) !important;
 }
 
 .font-weight-400 {
@@ -315,28 +358,6 @@ a {
     font-size: var(--font-size-55);
 }
 
-.line-height-list {
-    line-height: 30px;
-}
-
-.store-img-width {
-    width: 140px;
-}
-
-.brand-img-height {
-    height: 37px;
-}
-
-.index-img {
-    max-width: 100%;
-    max-height: 600px;
-}
-
-.index-row-width {
-    min-width: 260px;
-    max-width: 350px;
-}
-
 .f-0 {
     flex: 0;
 }
@@ -367,34 +388,26 @@ a {
     max-width: 700px;
 }
 
-.navbar-toggler {
-    background-color: transparent;
-    min-width: unset;
-    border-radius: 0;
-    padding: 0;
+/*===================================================INDEX PAGE======================================================*/
+.store-img-width {
+    width: 140px;
 }
 
-    .navbar-toggler:focus {
-        outline: none;
-        box-shadow: 0 0 0 2px var(--white-shadow-color);
-    }
-
-.navbar-toggler-green:focus {
-    outline: none;
-    box-shadow: 0 0 0 2px var(--green-shadow-color);
+.index-img {
+    max-width: 100%;
+    max-height: 600px;
 }
 
-.toggler-icon {
-    width: 30px;
-    height: 30px;
-    transition: transform 0.35s ease-out;
+.index-row-width {
+    min-width: 260px;
+    max-width: 350px;
 }
 
-.toggler-rotate {
-    transform: rotate(45deg);
-    transition: transform 0.35s ease-out;
+.line-height-list {
+    line-height: 30px;
 }
 
+/*=================================================FORM VALIDATION===================================================*/
 .valid.modified:not([type=checkbox]) {
     box-shadow: 0 0 0 1px var(--green-color);
 }
@@ -407,6 +420,7 @@ a {
     color: red;
 }
 
+/*===================================================BLAZOR===============================================================*/
 #blazor-error-ui {
     background: lightyellow;
     bottom: 0;
@@ -426,6 +440,8 @@ a {
         top: 0.5rem;
     }
 
+
+/*-------------------------------------------------MOBILE-----------------------------------------------------------*/
 @media (max-width: 767px) {
     .navbar {
         padding-left: 0;
@@ -499,6 +515,7 @@ a {
     }
 }
 
+/*-------------------------------------------------XS MOBILE------------------------------------------------*/
 @media (max-width: 350px) {
     :root {
         --main-padding: 0 15px;
@@ -521,6 +538,7 @@ a {
     }
 }
 
+/*-------------------------------------------------TABLET---------------------------------------------------*/
 @media (min-width: 768px) {
     :root {
         --main-padding: 0 70px;
@@ -640,6 +658,7 @@ a {
     }
 }
 
+/*-------------------------------------------------LAPTOP---------------------------------------------------*/
 @media(min-width: 992px) {
     :root {
         --main-padding: 0 130px;
