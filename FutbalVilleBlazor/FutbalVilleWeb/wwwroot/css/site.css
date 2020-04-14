@@ -76,6 +76,13 @@ footer {
     background-size: 100% 13%;
 }
 
+.bg-waves-bottom {
+    background: url(../img/bg-waves-bottom.png);
+    background-repeat: no-repeat;
+    background-position-y: bottom;
+    background-size: 100% 25%;
+}
+
 .bg-green-gradient {
     background: linear-gradient(180deg, #65B17F 0%, #2C914F 100%) 0% 0% no-repeat padding-box;
 }
@@ -98,7 +105,8 @@ footer {
     padding: 5px !important;
     font-size: var(--font-size-14);
     border-bottom: solid 1px transparent;
-    transition: border-bottom 0.35s ease-out;
+    border-top: solid 1px transparent;
+    transition: border 0.35s ease-out;
 }
 
     .nav-link.active {
@@ -308,6 +316,50 @@ a {
     position: relative;
     right: 50px;
 }
+
+/*=================================================FAQ PAGE=============================================================*/
+.faq-question-card {
+    border-left: 0;
+    border-right: 0;
+    border-top: 0;
+    border-color: #dddddd !important;
+}
+
+.faq-question-header {
+    background-color: white;
+    border-bottom: 0;
+}
+
+.faq-question-button {
+    color: black;
+    text-transform: uppercase;
+    font-weight: 500;
+    background-color: transparent;
+    border: 0;
+    border-radius: 0;
+}
+
+    .faq-question-button:after {
+        text-decoration: none !important;
+        font-family: Icons;
+        content: '\e034';
+        transition: all 0.35s;
+    }
+
+    .faq-question-button[aria-expanded=true] {
+        color: var(--green-color);
+    }
+
+        .faq-question-button[aria-expanded=true]:after {
+            color: var(--green-color);
+            -webkit-transform: rotate(180deg);
+            -moz-transform: rotate(180deg);
+            transform: rotate(180deg);
+        }
+
+    .faq-question-button:focus {
+        outline-color: var(--white-shadow-color);
+    }
 
 /*==================================================UTILITY============================================================*/
 .text-green {
@@ -632,8 +684,13 @@ a {
     }
 
     .px-md-25 {
-        padding-left: 25px;
-        padding-right: 25px;
+        padding-left: 25px !important;
+        padding-right: 25px !important;
+    }
+
+    .px-md-65 {
+        padding-left: 65px !important;
+        padding-right: 65px !important;
     }
 
     .py-md-40 {
