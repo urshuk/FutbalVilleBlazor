@@ -652,6 +652,28 @@ a {
         box-shadow: 0px 5px 6px #00000029;
     }
 
+    .carousel-img {
+        transition: all 0.3s;
+        opacity: 0.4;
+        height: 350px;
+        object-fit: contain;
+    }
+
+    .carousel-inner .carousel-item-right.active,
+    .carousel-inner .carousel-item-next {
+        transform: translateX(100%);
+    }
+
+    .carousel-inner .carousel-item-left.active,
+    .carousel-inner .carousel-item-prev {
+        transform: translateX(-100%);
+    }
+
+    .carousel-inner .carousel-item-right,
+    .carousel-inner .carousel-item-left {
+        transform: translateX(0);
+    }
+
     .w-xs-50 {
         width: 50%;
     }
