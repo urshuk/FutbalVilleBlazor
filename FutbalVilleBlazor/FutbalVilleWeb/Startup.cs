@@ -73,7 +73,6 @@ namespace FutbalVilleWeb
 			services.AddRazorPages();
 			services.AddServerSideBlazor();
 			services.AddScoped<AuthenticationStateProvider, RevalidatingIdentityAuthenticationStateProvider<IdentityUser>>();
-			services.AddSingleton<WeatherForecastService>();
 			services.AddSingleton<ErrorLogService>();
 			services.AddSingleton<ToDoService>();
 		}
