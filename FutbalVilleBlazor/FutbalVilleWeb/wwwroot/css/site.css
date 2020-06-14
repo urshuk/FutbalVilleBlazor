@@ -267,6 +267,7 @@ a {
     height: 100%;
     z-index: 0;
     box-shadow: 4px 4px 6px #00000029;
+    border-radius: 10px;
 }
 
 .contact-back-paragraph {
@@ -279,6 +280,7 @@ a {
     width: 85%;
     background-color: var(--grey-color);
     box-shadow: 4px 4px 6px #00000029;
+    border-radius: 10px;
 }
 
 .contact-form-control {
@@ -556,6 +558,10 @@ a {
 
 .max-w-300 {
     max-width: 300px;
+}
+
+.border-radius-10 {
+    border-radius: 10px;
 }
 
 /*===================================================INDEX PAGE======================================================*/
