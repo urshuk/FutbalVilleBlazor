@@ -67,7 +67,7 @@ footer {
 
 /*====================================================BACKGROUNDS=================================================================*/
 .bg-green-image {
-    background: url(../img/FV-index-bg.png);
+    background: url(../img/index-bg.png);
     background-color: var(--green-bg-color);
     background-size: cover;
     background-position: 80%;
