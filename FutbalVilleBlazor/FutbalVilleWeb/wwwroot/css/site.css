@@ -397,6 +397,7 @@ a {
     align-self: flex-start;
     opacity: 0;
     transition: opacity 1s;
+    padding-bottom: 0;
 }
 
 .carousel-img {
@@ -422,7 +423,7 @@ a {
 }
 
 .carousel-control-next, .carousel-control-prev {
-    top: 200px;
+    top: 160px;
 }
 
     .carousel-control-next:focus, .carousel-control-prev:focus {
@@ -446,7 +447,7 @@ a {
 .carousel-inner .carousel-item-prev {
     align-items: flex-end;
     display: flex;
-    height: 650px;
+    height: 530px;
 }
 
 .carousel-inner .carousel-item-right.active,
@@ -685,6 +686,10 @@ a {
         object-fit: contain;
     }
 
+    .carousel-item {
+        transition: transform 0.61s ease-in-out, -webkit-transform 0.61s ease-in-out; /*safari double slide bugfix*/
+    }
+
     .carousel-inner .carousel-item-right.active,
     .carousel-inner .carousel-item-next {
         transform: translateX(100%);
@@ -848,6 +853,12 @@ a {
     .carousel-inner .carousel-item.active .carousel-img-alternative-left,
     .carousel-inner .carousel-item.active .carousel-img-alternative-right {
         height: 320px;
+    }
+
+    .carousel-inner .carousel-item.active,
+    .carousel-inner .carousel-item-next,
+    .carousel-inner .carousel-item-prev {
+        height: 560px;
     }
 
     .font-size-md-55 {
