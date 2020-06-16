@@ -18,6 +18,7 @@ using FutbalVilleWeb.Data;
 using System.Net.Http;
 using Microsoft.AspNetCore.ResponseCompression;
 using Microsoft.Extensions.Options;
+using Microsoft.AspNetCore.StaticFiles;
 
 namespace FutbalVilleWeb
 {
@@ -94,6 +95,9 @@ namespace FutbalVilleWeb
 
 			app.UseHttpsRedirection();
 			app.UseStaticFiles();
+
+			FileExtensionContentTypeProvider provider = new FileExtensionContentTypeProvider();
+			provider.Mappings[".webmanifest"] = "application/manifest+json";
 
 			app.UseRouting();
 

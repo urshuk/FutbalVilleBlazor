@@ -447,7 +447,7 @@ a {
 .carousel-inner .carousel-item-prev {
     align-items: flex-end;
     display: flex;
-    height: 530px;
+    height: 545px;
 }
 
 .carousel-inner .carousel-item-right.active,
