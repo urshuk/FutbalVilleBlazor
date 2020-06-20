@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using BlazorStrap;
 
 namespace FutbalVilleWASM
 {
@@ -26,6 +27,7 @@ namespace FutbalVilleWASM
 				builder.Configuration.Bind("Local", options.ProviderOptions);
 			});
 
+			builder.Services.AddBootstrapCss();
 			await builder.Build().RunAsync();
 		}
 	}
