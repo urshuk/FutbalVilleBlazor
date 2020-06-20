@@ -93,11 +93,16 @@ namespace FutbalVilleWeb
 				app.UseHsts();
 			}
 
-			app.UseHttpsRedirection();
+			//app.UseHttpsRedirection();
 			app.UseStaticFiles();
 
 			FileExtensionContentTypeProvider provider = new FileExtensionContentTypeProvider();
 			provider.Mappings[".webmanifest"] = "application/manifest+json";
+
+			app.UseStaticFiles(new StaticFileOptions()
+			{
+				ContentTypeProvider = provider
+			});
 
 			app.UseRouting();
 

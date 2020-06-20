@@ -1,0 +1,67 @@
+﻿@inherits LayoutComponentBase
+@inject NavigationManager NavigationManager
+
+
+<div>
+    <CascadingValue Value="@greenBg">
+        <NavMenu />
+    </CascadingValue>
+</div>
+
+<main class="main @BgCssClass justify-content-center">
+    <div class="content">
+        @Body
+    </div>
+</main>
+
+<div>
+    <CascadingValue Value="@greenBg">
+        <Footer />
+    </CascadingValue>
+</div>
+
+@code {
+    private bool greenBg = true;
+    private string BgCssClass = "bg-green-image";
+
+    protected override void OnInitialized()
+    {
+        // Subscribe to the event
+        NavigationManager.LocationChanged += LocationChanged;
+        SetBg();
+        base.OnInitialized();
+    }
+
+    void LocationChanged(object sender, LocationChangedEventArgs e)
+    {
+        SetBg();
+        this.StateHasChanged();
+    }
+
+    void SetBg()
+    {
+        greenBg = NavigationManager.BaseUri == NavigationManager.Uri;
+        var currentPage = NavigationManager.Uri.Replace(NavigationManager.BaseUri, "");
+        switch (currentPage)
+        {
+            case "download":
+                BgCssClass = "bg-waves-top";
+                break;
+            case "stiahnut":
+                BgCssClass = "bg-waves-top";
+                break;
+            case "faq":
+                BgCssClass = "bg-waves-bottom";
+                break;
+            case "caste-otazky":
+                BgCssClass = "bg-waves-bottom";
+                break;
+            case "":
+                BgCssClass = "bg-green-image";
+                break;
+            default:
+                BgCssClass = null;
+                break;
+        }
+    }
+}

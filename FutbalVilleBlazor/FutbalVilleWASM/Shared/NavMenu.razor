@@ -1,0 +1,54 @@
+﻿<nav class="navbar @NavColorCssClass @NavMobileBgCssClass bg-md-transparent mx-auto">
+    <a class="navbar-brand" href="">
+        <img class="brand-img-height" src="@LogoPath" alt="Logo" />
+    </a>
+    <button class="navbar-toggler @TogglerColorCssClass" type="button" @onclick="ToggleNavMenu">
+        <img class="toggler-icon @TogglerRotateCssClass" src="@TogglerPath" alt="Toggle Menu"/>
+    </button>
+    <div class="@NavMenuCssClass nav-collapse w-xs-100" @onclick="ToggleNavMenu">
+        <ul class="nav navbar-nav flex-row pb-4 py-md-0 @NavMobileColorCssClass nav-shadow">
+            <li class="nav-item px-3 py-3 w-xs-50 text-center">
+                <NavLink class="nav-link" href="stiahnut">STIAHNUŤ</NavLink>
+            </li>
+            <li class="nav-item px-3 py-3 w-xs-50 text-center">
+                <NavLink class="nav-link" href="o-appke">O APLIKÁCII</NavLink>
+            </li>
+            <li class="nav-item px-3 py-3 w-xs-50 text-center">
+                <NavLink class="nav-link" href="caste-otazky">ČASTÉ OTÁZKY</NavLink>
+            </li>
+            <li class="nav-item px-3 py-3 w-xs-50 text-center">
+                <NavLink class="nav-link" href="kontakt">KONTAKT</NavLink>
+            </li>
+            <AuthorizeView Roles="Adminnn">
+                <li class="nav-item px-3 py-3 w-xs-50 text-center">
+                    <NavLink class="nav-link" href="test">BUGS</NavLink>
+                </li>
+                <li class="nav-item px-3 py-3 w-xs-50 text-center">
+                    <NavLink class="nav-link" href="todo">TO-DO</NavLink>
+                </li>
+            </AuthorizeView>
+        </ul>
+    </div>
+</nav>
+
+
+@code {
+    [CascadingParameter]
+    private bool greenNav { get; set; }
+    private string NavColorCssClass => greenNav ? "navbar-green" : "navbar-white";
+    private string NavMobileBgCssClass => !collapseNavMenu && !greenNav ? "bg-white" : "bg-transparent";
+    private string NavMobileColorCssClass => greenNav ? "bg-nav-green" : "bg-nav-white";
+    private string LogoPath => greenNav ? "/img/FV-logo-white.svg" : "/img/FV-logo-green.svg";
+    private string TogglerPath => greenNav ? "/img/toggler-icon-white.svg" : "/img/toggler-icon-green.svg";
+    private string TogglerRotateCssClass => collapseNavMenu ? null : "toggler-rotate";
+    private string TogglerColorCssClass => greenNav ? null : "navbar-toggler-green";
+
+    private bool collapseNavMenu = true;
+
+    private string NavMenuCssClass => collapseNavMenu ? "nav-collapsed" : null;
+
+    private void ToggleNavMenu()
+    {
+        collapseNavMenu = !collapseNavMenu;
+    }
+}
