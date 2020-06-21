@@ -7,7 +7,7 @@
     <meta name="author" content="Vít Vašák" />
     <meta name="description" content="Všetko o prvej mobilnej aplikácii s výsledkami všetkých futbalových líg na Slovensku" />
     <meta name="robots" content="index, follow" />
-    <title>FutbalVille - Pre pravých fanúšikov slovenského futbalu</title>
+    <title>Beta - FutbalVille - Pre pravých fanúšikov slovenského futbalu</title>
     <base href="/" />
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
     <link href="css/app.css" rel="stylesheet" />
@@ -23,7 +23,12 @@
 </head>
 
 <body>
-    <app>Loading...</app>
+    <app>
+        <div class="loading-container">
+            <img class="loading-ball" src="img/ball.svg" alt="Loading ball" />
+            <h1 class="text-white font-size-20 font-size-md-30 font-weight-600 text-center">Načítavam...</h1>
+        </div>
+    </app>
 
     <div id="blazor-error-ui">
         An unhandled error has occurred.
@@ -35,16 +40,7 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
     <script src="_content/Microsoft.AspNetCore.Components.WebAssembly.Authentication/AuthenticationService.js"></script>
     <script src="_framework/blazor.webassembly.js"></script>
-    <script>
-        window.initializeCarousel = () => {
-            $('.carousel').carousel();
-            $('.carousel-control-prev').click(
-                () => $('.carousel').carousel('prev'));
-            $('.carousel-control-next').click(
-                () => $('.carousel').carousel('next'));
-
-        }
-    </script>
+    <script src="js/app.js"></script>
 </body>
 
 </html>
