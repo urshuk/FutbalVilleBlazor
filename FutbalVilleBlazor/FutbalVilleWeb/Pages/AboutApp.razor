@@ -1,5 +1,6 @@
 ﻿@page "/o-appke"
 @page "/about"
+@inject IJSRuntime JsRuntime
 
 <div class="container-fluid h-100 pt-md-5 pt-lg-0">
     <div class="row pb-4">
@@ -7,7 +8,10 @@
             <h2 class="text-uppercase font-size-20 font-size-xxs-18 text-center text-green font-weight-600">pre pravých fanúšikov slovenského futbalu</h2>
         </div>
         <div class="col-12 col-md-6 align-self-lg-center mt-lg-30">
-            <img class="about-hero-img d-block mx-auto" src="/img/about-hero-img.png" alt="Hero Image" />
+            <picture>
+                <source type="image/webp" srcset="/img/about-hero-img.webp" />
+                <img class="about-hero-img d-block mx-auto" src="/img/about-hero-img.png" alt="Hero Image" />
+            </picture>
         </div>
         <div class="col-12 col-md-6 order-md-first px-0 align-self-lg-center mt-lg-30">
             <h2 class="text-uppercase font-size-20 font-size-lg-25 font-size-xl-35 text-green font-weight-600 d-none d-md-block line-height-lg-55">pre pravých fanúšikov slovenského futbalu</h2>
@@ -71,7 +75,10 @@
             <p class="font-size-12 font-size-md-14 font-size-lg-16 font-weight-500 max-w-300">Zobrazenie farieb sa mení na základe nastavenia zariadenia. Ak vaše zariadenie nepodporuje tmavý režim, aplikácia sa zobrazí vo svetlom režime.</p>
         </div>
         <div class="col-12 col-md-4 col-lg-4 px-0">
-            <img class="dark-mode-img d-block mx-auto" src="/img/dark-mode-img.png" alt="Dark mode preview" />
+            <picture>
+                <source type="image/webp" srcset="/img/dark-mode-img.webp" />
+                <img class="dark-mode-img d-block mx-auto" src="/img/dark-mode-img.png" alt="Dark mode preview" />
+            </picture>
         </div>
         <div class="col-12 col-md-4 col-lg-4 align-self-md-end px-0 text-right mb-lg-50">
             <h3 class="font-size-14 font-size-md-16 font-size-lg-20">
@@ -97,9 +104,18 @@
                             Pre obľúbené položky môžete dostávať užitočné notifikácie a zobrazia sa vám na časovej osi.
                         </p>
                     </div>
-                    <img class="d-none d-md-block col-4 px-0 carousel-img-alternative-left" src="/img/settings-nots.png" alt="First slide left">
-                    <img class="d-block col-8 mx-auto col-md-4 px-0 carousel-img" src="/img/favourites.png" alt="First slide main">
-                    <img class="d-none d-md-block col-4 px-0 carousel-img-alternative-right" src="/img/timeline.png" alt="First slide right">
+                    <picture class="col-4 d-flex justify-content-center">
+                        <source type="image/webp" srcset="/img/settings-nots.webp" />
+                        <img class="d-none d-md-block px-0 carousel-img-alternative-left" src="/img/settings-nots.png" alt="First slide left">
+                    </picture>
+                    <picture class="col-8 col-md-4 d-flex justify-content-center">
+                        <source type="image/webp" srcset="/img/favourites.webp" />
+                        <img class="d-block px-0 mx-auto carousel-img" src="/img/favourites.png" alt="First slide main">
+                    </picture>
+                    <picture class="col-4 d-flex justify-content-center">
+                        <source type="image/webp" srcset="/img/timeline.webp" />
+                        <img class="d-none d-md-block px-0 carousel-img-alternative-right" src="/img/timeline.png" alt="First slide right">
+                    </picture>
                 </div>
                 <div class="carousel-item justify-content-center flex-wrap">
                     <div class="carousel-caption">
@@ -110,21 +126,39 @@
                             Zápasy sú zoskupené podľa dátumu, čo vám zaručí prehľad blížiacich sa zápasov.
                         </p>
                     </div>
-                    <img class="d-none d-md-block col-4 px-0 carousel-img-alternative-left" src="/img/favourites.png" alt="Second slide left">
-                    <img class="d-block col-8 mx-auto col-md-4 carousel-img px-0" src="/img/timeline.png" alt="Second slide main">
-                    <img class="d-none d-md-block col-4 px-0 carousel-img-alternative-right" src="/img/match-texas.png" alt="Second slide right">
+                    <picture class="col-4 d-flex justify-content-center">
+                        <source type="image/webp" srcset="/img/favourites.webp" />
+                        <img class="d-none d-md-block px-0 carousel-img-alternative-left" src="/img/favourites.png" alt="Second slide left">
+                    </picture>
+                    <picture class="col-8 col-md-4 d-flex justify-content-center">
+                        <source type="image/webp" srcset="/img/timeline.webp" />
+                        <img class="d-block mx-auto carousel-img px-0" src="/img/timeline.png" alt="Second slide main">
+                    </picture>
+                    <picture class="col-4 d-flex justify-content-center">
+                        <source type="image/webp" srcset="/img/match-texas.webp" />
+                        <img class="d-none d-md-block px-0 carousel-img-alternative-right" src="/img/match-texas.png" alt="Second slide right">
+                    </picture>
                 </div>
                 <div class="carousel-item justify-content-center flex-wrap">
                     <div class="carousel-caption">
                         <h5 class="text-green font-size-14 font-size-md-16 font-size-lg-18 mb-3 text-uppercase">prehľad zápasu</h5>
                         <p class="font-size-12 font-size-md-14">
                             Majte prehľad o všetkých dôležitých udalostiach v zápase ako sú góly, karty, striedania, nepremenené pokutové kopy a samozrejme aj skóre zápasu.
-                            Udalosti sú chronologicky zoradené a zarovnané na stranu príslušného tímu. 
+                            Udalosti sú chronologicky zoradené a zarovnané na stranu príslušného tímu.
                         </p>
                     </div>
-                    <img class="d-none d-md-block col-4 px-0 carousel-img-alternative-left" src="/img/timeline.png" alt="Third slide left">
-                    <img class="d-block col-8 mx-auto col-md-4 carousel-img px-0" src="/img/match-texas.png" alt="Third slide main">
-                    <img class="d-none d-md-block col-4 px-0 carousel-img-alternative-right" src="/img/lineups.png" alt="Third slide right">
+                    <picture class="col-4 d-flex justify-content-center">
+                        <source type="image/webp" srcset="/img/timeline.webp" />
+                        <img class="d-none d-md-block px-0 carousel-img-alternative-left" src="/img/timeline.png" alt="Third slide left">
+                    </picture>
+                    <picture class="col-8 col-md-4 d-flex justify-content-center">
+                        <source type="image/webp" srcset="/img/match-texas.webp" />
+                        <img class="d-block mx-auto carousel-img px-0" src="/img/match-texas.png" alt="Third slide main">
+                    </picture>
+                    <picture class="col-4 d-flex justify-content-center">
+                        <source type="image/webp" srcset="/img/lineups.webp" />
+                        <img class="d-none d-md-block px-0 carousel-img-alternative-right" src="/img/lineups.png" alt="Third slide right">
+                    </picture>
                 </div>
                 <div class="carousel-item justify-content-center flex-wrap">
                     <div class="carousel-caption">
@@ -133,9 +167,18 @@
                             V informáciách o zápase viete nájsť aj kompletné zostavy oboch tímov vrátane realizačných tímov.
                         </p>
                     </div>
-                    <img class="d-none d-md-block col-4 px-0 carousel-img-alternative-left" src="/img/match-texas.png" alt="Fourth slide left">
-                    <img class="d-block col-8 mx-auto col-md-4 px-0 carousel-img" src="/img/lineups.png" alt="First slide main">
-                    <img class="d-none d-md-block col-4 px-0 carousel-img-alternative-right" src="/img/standings.png" alt="Fourth slide right">
+                    <picture class="col-4 d-flex justify-content-center">
+                        <source type="image/webp" srcset="/img/match-texas.webp" />
+                        <img class="d-none d-md-block px-0 carousel-img-alternative-left" src="/img/match-texas.png" alt="Fourth slide left">
+                    </picture>
+                    <picture class="col-8 col-md-4 d-flex justify-content-center">
+                        <source type="image/webp" srcset="/img/lineups.webp" />
+                        <img class="d-block mx-auto px-0 carousel-img" src="/img/lineups.png" alt="First slide main">
+                    </picture>
+                    <picture class="col-4 d-flex justify-content-center">
+                        <source type="image/webp" srcset="/img/standings.webp" />
+                        <img class="d-none d-md-block px-0 carousel-img-alternative-right" src="/img/standings.png" alt="Fourth slide right">
+                    </picture>
                 </div>
                 <div class="carousel-item justify-content-center flex-wrap">
                     <div class="carousel-caption">
@@ -146,9 +189,18 @@
                             Rovnakým spôsobom fungujú tabuľky štatistík.
                         </p>
                     </div>
-                    <img class="d-none d-md-block col-4 px-0 carousel-img-alternative-left" src="/img/lineups.png" alt="Fifth slide left">
-                    <img class="d-block col-8 mx-auto col-md-4 px-0 carousel-img" src="/img/standings.png" alt="Fifth slide main">
-                    <img class="d-none d-md-block col-4 px-0 carousel-img-alternative-right" src="/img/profile-club.png" alt="Fifth slide right">
+                    <picture class="col-4 d-flex justify-content-center">
+                        <source type="image/webp" srcset="/img/lineups.webp" />
+                        <img class="d-none d-md-block px-0 carousel-img-alternative-left" src="/img/lineups.png" alt="Fifth slide left">
+                    </picture>
+                    <picture class="col-8 col-md-4 d-flex justify-content-center">
+                        <source type="image/webp" srcset="/img/standings.webp" />
+                        <img class="d-block mx-auto px-0 carousel-img" src="/img/standings.png" alt="Fifth slide main">
+                    </picture>
+                    <picture class="col-4 d-flex justify-content-center">
+                        <source type="image/webp" srcset="/img/profile-club.webp" />
+                        <img class="d-none d-md-block px-0 carousel-img-alternative-right" src="/img/profile-club.png" alt="Fifth slide right">
+                    </picture>
                 </div>
                 <div class="carousel-item justify-content-center flex-wrap">
                     <div class="carousel-caption">
@@ -158,9 +210,18 @@
                             a zoznam tímov patriacich pod tento klub.
                         </p>
                     </div>
-                    <img class="d-none d-md-block col-4 px-0 carousel-img-alternative-left" src="/img/standings.png" alt="Sixth slide left">
-                    <img class="d-block col-8 mx-auto col-md-4 px-0 carousel-img" src="/img/profile-club.png" alt="Sixth slide main">
-                    <img class="d-none d-md-block col-4 px-0 carousel-img-alternative-right" src="/img/profile-team.png" alt="Sixth slide right">
+                    <picture class="col-4 d-flex justify-content-center">
+                        <source type="image/webp" srcset="/img/standings.webp" />
+                        <img class="d-none d-md-block px-0 carousel-img-alternative-left" src="/img/standings.png" alt="Sixth slide left">
+                    </picture>
+                    <picture class="col-8 col-md-4 d-flex justify-content-center">
+                        <source type="image/webp" srcset="/img/profile-club.webp" />
+                        <img class="d-block mx-auto px-0 carousel-img" src="/img/profile-club.png" alt="Sixth slide main">
+                    </picture>
+                    <picture class="col-4 d-flex justify-content-center">
+                        <source type="image/webp" srcset="/img/profile-team.webp" />
+                        <img class="d-none d-md-block px-0 carousel-img-alternative-right" src="/img/profile-team.png" alt="Sixth slide right">
+                    </picture>
                 </div>
                 <div class="carousel-item justify-content-center flex-wrap">
                     <div class="carousel-caption">
@@ -171,9 +232,18 @@
                             Kliknutím na názov ligy sa vám zobrazí jej profil.
                         </p>
                     </div>
-                    <img class="d-none d-md-block col-4 px-0 carousel-img-alternative-left" src="/img/profile-club.png" alt="Seventh slide left">
-                    <img class="d-block col-8 mx-auto col-md-4 px-0 carousel-img" src="/img/profile-team.png" alt="Seventh slide main">
-                    <img class="d-none d-md-block col-4 px-0 carousel-img-alternative-right" src="/img/profile-player.png" alt="Seventh slide right">
+                    <picture class="col-4 d-flex justify-content-center">
+                        <source type="image/webp" srcset="/img/profile-club.webp" />
+                        <img class="d-none d-md-block px-0 carousel-img-alternative-left" src="/img/profile-club.png" alt="Seventh slide left">
+                    </picture>
+                    <picture class="col-8 col-md-4 d-flex justify-content-center">
+                        <source type="image/webp" srcset="/img/profile-team.webp" />
+                        <img class="d-block mx-auto px-0 carousel-img" src="/img/profile-team.png" alt="Seventh slide main">
+                    </picture>
+                    <picture class="col-4 d-flex justify-content-center">
+                        <source type="image/webp" srcset="/img/profile-player.webp" />
+                        <img class="d-none d-md-block px-0 carousel-img-alternative-right" src="/img/profile-player.png" alt="Seventh slide right">
+                    </picture>
                 </div>
                 <div class="carousel-item justify-content-center flex-wrap">
                     <div class="carousel-caption">
@@ -182,21 +252,38 @@
                             V profile hráča viete nájsť jeho základné informácie, sezónne aj kariérne štatistiky a históriu prestupov.
                         </p>
                     </div>
-                    <img class="d-none d-md-block col-4 px-0 carousel-img-alternative-left" src="/img/profile-team.png" alt="Eighth slide left">
-                    <img class="d-block col-8 mx-auto col-md-4 px-0 carousel-img" src="/img/profile-player.png" alt="Eighth slide main">
-                    <img class="d-none d-md-block col-4 px-0 carousel-img-alternative-right" src="/img/searching.png" alt="Eighth slide right">
+                    <picture class="col-4 d-flex justify-content-center">
+                        <source type="image/webp" srcset="/img/profile-team.webp" />
+                        <img class="d-none d-md-block px-0 carousel-img-alternative-left" src="/img/profile-team.png" alt="Eighth slide left">
+                    </picture>
+                    <picture class="col-8 col-md-4 d-flex justify-content-center">
+                        <source type="image/webp" srcset="/img/profile-player.webp" />
+                        <img class="d-block mx-auto px-0 carousel-img" src="/img/profile-player.png" alt="Eighth slide main">
+                    </picture>
+                    <picture class="col-4 d-flex justify-content-center">
+                        <source type="image/webp" srcset="/img/searching.webp" />
+                        <img class="d-none d-md-block px-0 carousel-img-alternative-right" src="/img/searching.png" alt="Eighth slide right">
+                    </picture>
                 </div>
                 <div class="carousel-item justify-content-center flex-wrap">
                     <div class="carousel-caption">
                         <h5 class="text-green font-size-14 font-size-md-16 font-size-lg-18 mb-3 text-uppercase">vyhľadávanie</h5>
                         <p class="font-size-12 font-size-md-14">
-                            Ak viete čo chcete, vyhľadávanie rýchly spôsob ako sa dostať k informáciám. Môžete vyhľadávať hráčov, trénerov, kluby, súťaže či zväzy<sup>*</sup>.
-                            <small>(* funkčné v nasledujúcej verzii).</small>
+                            Ak viete čo chcete, vyhľadávanie rýchly spôsob ako sa dostať k informáciám. Môžete vyhľadávať hráčov, trénerov, kluby, súťaže či zväzy.
                         </p>
                     </div>
-                    <img class="d-none d-md-block col-4 px-0 carousel-img-alternative-left" src="/img/profile-player.png" alt="Ninth slide left">
-                    <img class="d-block col-8 mx-auto col-md-4 px-0 carousel-img" src="/img/searching.png" alt="Ninth slide main">
-                    <img class="d-none d-md-block col-4 px-0 carousel-img-alternative-right" src="/img/settings-nots.png" alt="Ninth slide right">
+                    <picture class="col-4 d-flex justify-content-center">
+                        <source type="image/webp" srcset="/img/profile-player.webp" />
+                        <img class="d-none d-md-block px-0 carousel-img-alternative-left" src="/img/profile-player.png" alt="Ninth slide left">
+                    </picture>
+                    <picture class="col-8 col-md-4 d-flex justify-content-center">
+                        <source type="image/webp" srcset="/img/searching.webp" />
+                        <img class="d-block mx-auto px-0 carousel-img" src="/img/searching.png" alt="Ninth slide main">
+                    </picture>
+                    <picture class="col-4 d-flex justify-content-center">
+                        <source type="image/webp" srcset="/img/settings-nots.webp" />
+                        <img class="d-none d-md-block px-0 carousel-img-alternative-right" src="/img/settings-nots.png" alt="Ninth slide right">
+                    </picture>
                 </div>
                 <div class="carousel-item justify-content-center flex-wrap">
                     <div class="carousel-caption">
@@ -207,9 +294,18 @@
                             a ak chcete riskovať zmeškanie zápasu, je možné notifikácie úplne vypnúť.
                         </p>
                     </div>
-                    <img class="d-none d-md-block col-4 px-0 carousel-img-alternative-left" src="/img/searching.png" alt="Tenth slide left">
-                    <img class="d-block col-8 mx-auto col-md-4 px-0 carousel-img" src="/img/settings-nots.png" alt="Tenth slide main">
-                    <img class="d-none d-md-block col-4 px-0 carousel-img-alternative-right" src="/img/favourites.png" alt="Tenth slide right">
+                    <picture class="col-4 d-flex justify-content-center">
+                        <source type="image/webp" srcset="/img/searching.webp" />
+                        <img class="d-none d-md-block px-0 carousel-img-alternative-left" src="/img/searching.png" alt="Tenth slide left">
+                    </picture>
+                    <picture class="col-8 col-md-4 d-flex justify-content-center">
+                        <source type="image/webp" srcset="/img/settings-nots.webp" />
+                        <img class="d-block mx-auto px-0 carousel-img" src="/img/settings-nots.png" alt="Tenth slide main">
+                    </picture>
+                    <picture class="col-4 d-flex justify-content-center">
+                        <source type="image/webp" srcset="/img/favourites.webp" />
+                        <img class="d-none d-md-block px-0 carousel-img-alternative-right" src="/img/favourites.png" alt="Tenth slide right">
+                    </picture>
                 </div>
             </div>
             <ol class="carousel-indicators position-static">
@@ -237,5 +333,12 @@
 </div>
 
 @code {
-
+    protected async override Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            await JsRuntime.InvokeAsync<object>("initializeCarousel");
+            firstRender = false;
+        }
+    }
 }
