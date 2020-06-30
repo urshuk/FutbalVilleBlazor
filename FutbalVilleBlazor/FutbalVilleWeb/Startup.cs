@@ -1,23 +1,13 @@
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Components;
-using Microsoft.AspNetCore.Components.Authorization;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Identity.UI;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using FutbalVilleWeb.Areas.Identity;
-using FutbalVilleWeb.Data;
 using System.Net.Http;
 using Microsoft.AspNetCore.ResponseCompression;
-using Microsoft.Extensions.Options;
 using Microsoft.AspNetCore.StaticFiles;
 
 namespace FutbalVilleWeb
@@ -35,12 +25,6 @@ namespace FutbalVilleWeb
 		// For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
 		public void ConfigureServices(IServiceCollection services)
 		{
-			//mongoDB
-			services.Configure<LoggingDatabaseSettings>(Configuration.GetSection(nameof(LoggingDatabaseSettings)));
-			services.AddSingleton<ILoggingDatabaseSettings>(sp => sp.GetRequiredService<IOptions<LoggingDatabaseSettings>>().Value);
-			services.Configure<ToDoDatabaseSettings>(Configuration.GetSection(nameof(ToDoDatabaseSettings)));
-			services.AddSingleton<IToDoDatabaseSettings>(sp => sp.GetRequiredService<IOptions<ToDoDatabaseSettings>>().Value);
-
 			services.AddResponseCompression(opts =>
 			{
 				opts.MimeTypes = ResponseCompressionDefaults.MimeTypes.Concat(
@@ -61,21 +45,8 @@ namespace FutbalVilleWeb
 					};
 				});
 			}
-			services.AddDbContext<ApplicationDbContext>(options =>
-				options.UseSqlServer(
-					Configuration.GetConnectionString("DefaultConnection")));
-			services.AddDefaultIdentity<IdentityUser>(options =>
-			{
-				options.SignIn.RequireConfirmedAccount = false;
-				options.Password.RequireNonAlphanumeric = false;
-			})
-				.AddRoles<IdentityRole>()
-				.AddEntityFrameworkStores<ApplicationDbContext>();
 			services.AddRazorPages();
 			services.AddServerSideBlazor();
-			services.AddScoped<AuthenticationStateProvider, RevalidatingIdentityAuthenticationStateProvider<IdentityUser>>();
-			services.AddSingleton<ErrorLogService>();
-			services.AddSingleton<ToDoService>();
 		}
 
 		// This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -93,7 +64,7 @@ namespace FutbalVilleWeb
 				app.UseHsts();
 			}
 
-			//app.UseHttpsRedirection();
+			app.UseHttpsRedirection();
 			app.UseStaticFiles();
 
 			FileExtensionContentTypeProvider provider = new FileExtensionContentTypeProvider();

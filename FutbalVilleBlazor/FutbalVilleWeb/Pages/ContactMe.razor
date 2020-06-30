@@ -1,9 +1,7 @@
 ﻿@page "/kontakt"
 @page "/contact"
 @using FutbalVilleWeb.Data
-@using System.Net.Mail
-@using SendGrid
-@using SendGrid.Helpers.Mail
+@inject HttpClient Http
 
 <div class="d-flex h-100">
     <div class="container position-relative align-self-md-center contact-container mb-2">
@@ -50,43 +48,26 @@
     {
         try
         {
-            //var client = new SendGridClient("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");
-            //var from = new EmailAddress("vitvasakport@gmail.com", "FutbalVille");
-            //var to = new EmailAddress("vitvasak@outlook.com", "Vit Vasak");
-            //var subject = contactModel.Subject;
-            //var body = $"Name: {contactModel.Name} <br/>" +
-            //        $" Email: {contactModel.Email} <br/>" +
-            //        $" Phone: {contactModel.Phone} <br/>" +
-            //        $" Message: {contactModel.Message}";
-            //var msg = MailHelper.CreateSingleEmail(from, to, subject, "", body);
-            //await client.SendEmailAsync(msg);
-
-            var client = new SmtpClient("smtp.forpsi.com")
+            var message = new EmailMessage()
             {
-                EnableSsl = true,
-                UseDefaultCredentials = false,
-                DeliveryMethod = SmtpDeliveryMethod.Network,
-                Credentials = new System.Net.NetworkCredential("futbalville@futbalville.sk", "FVmainVV"),
-            };
-
-            MailMessage mail = new MailMessage
-            {
+                From = "futbalville@futbalville.sk",
+                FromDisplay = "FutbalVille",
+                Subject = contactModel.Subject,
                 Body = $"Name: {contactModel.Name} <br/>" +
                     $" Email: {contactModel.Email} <br/>" +
                     $" Phone: {contactModel.Phone} <br/>" +
                     $" Message: {contactModel.Message}",
-                Subject = contactModel.Subject,
-                From = new MailAddress("futbalville@futbalville.sk", "FutbalVille"),
+                To = "vitvasak@outlook.com",
             };
-            mail.To.Add(new MailAddress("vitvasak@outlook.com", "Vit Vasak"));
 
-            await client.SendMailAsync(mail);
+            //var client = ClientFactory.CreateClient("api");
+            await Http.PostAsJsonAsync<EmailMessage>("https://api.futbalville.sk/emails", message);
 
             contactModel = new Contact();
         }
-        catch (Exception e)
+        catch (Exception)
         {
-            Console.WriteLine(e);
+
         }
     }
 }

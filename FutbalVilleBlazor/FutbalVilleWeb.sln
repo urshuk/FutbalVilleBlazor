@@ -5,7 +5,7 @@ VisualStudioVersion = 16.0.29911.84
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FutbalVilleWeb", "FutbalVilleWeb\FutbalVilleWeb.csproj", "{00FB8B12-241E-4277-BBD0-0AE410C4E29D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FutbalVilleWASM", "FutbalVilleWASM\FutbalVilleWASM.csproj", "{F8F93564-95A5-43C8-B4D7-B308C1DB00C2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FutbalVilleWASM", "FutbalVilleWASM\FutbalVilleWASM.csproj", "{F8F93564-95A5-43C8-B4D7-B308C1DB00C2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
