@@ -26,6 +26,7 @@
 
     protected override void OnInitialized()
     {
+        RemoveFb();
         // Subscribe to the event
         NavigationManager.LocationChanged += LocationChanged;
         SetBg();
@@ -36,6 +37,14 @@
     {
         SetBg();
         this.StateHasChanged();
+    }
+
+    void RemoveFb()
+    {
+        if (NavigationManager.Uri.Contains("fbclid"))
+        {
+            NavigationManager.NavigateTo(NavigationManager.BaseUri);
+        }
     }
 
     void SetBg()
